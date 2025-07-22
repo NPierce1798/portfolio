@@ -162,7 +162,7 @@ export default function Home() {
       <div className="grid grid-cols-2 gap-6 w-2/3 mx-10 border-b border-gray-700 p-10 hover:border-blue-400 transition">
       {projects.length > 0 ? (
                           projects.map((project, index) => (
-                              <div className="h-100 border border-gray-600 hover:border-blue-400 rounded-2xl p-1 transition bg-gray-800 flex flex-col items-center text-gray-400" key={index}>
+                              <div className="h-fit min-h-100 border border-gray-600 hover:border-blue-400 rounded-2xl p-1 transition bg-gray-800 flex flex-col items-center text-gray-400" key={index}>
       
                                   <Image
                                       src={project.image}
