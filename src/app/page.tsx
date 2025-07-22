@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-type VariantType = 'javascript' | 'python' | 'typescript' | 'nextjs' | 'react' | 'tailwind' | 'django' | 'restapi' | 'express' | 'supabase' | 'github' | 'vercel' | 'digitalocean' | 'liquid' | 'shopify' | 'ecommerce' | 'default';
+type VariantType = 'javascript' | 'python' | 'typescript' | 'nextjs' | 'react' | 'tailwind' | 'django' | 'restapi' | 'express' | 'supabase' | 'github' | 'vercel' | 'digitalocean' | 'liquid' | 'shopify' | 'ecommerce' | 'machinelearning' | 'pandas' |'default';
 
 interface TagProps {
   children: React.ReactNode;
@@ -33,9 +33,15 @@ function Tag({ children, variant = 'default' }: TagProps) {
       digitalocean: 'bg-blue-400/50 text-blue-100 border-blue-400/90',
 
       // Other
+      machinelearning: 'bg-purple-500/50 text-purple-100 border-purple-500/90',
       liquid: 'bg-green-400/50 text-green-100 border-green-400/90',
       shopify: 'bg-green-500/50 text-green-200 border-green-500/90',
       ecommerce: 'bg-blue-500/50 text-blue-100 border-blue-500/90',
+
+      // Other tools
+      sklearn: 'bg-orange-500/50 text-orange-100 border-orange-500/90',
+      pandas: 'bg-blue-600/50 text-blue-100 border-blue-600/90',
+      jupyter: 'bg-orange-600/50 text-orange-100 border-orange-600/90',
 
       // Default
       default: 'bg-gray-500/50 text-gray-100 border-gray-500/90'
@@ -113,6 +119,19 @@ export default function Home() {
               'ecommerce'
             ]
         },
+                {
+            title: 'Stellar Classification: 97.9% Accuracy',
+            desc: 'Stellar classification and model comparision',
+            image: '/images/stellar.jpg',
+            link: 'https://github.com/NPierce1798/StellarClassifier',
+            tags: [
+              'python',
+              'machinelearning',
+              'sklearn',
+              'pandas',
+              'github'
+            ]
+        },
 
     ];
 
@@ -132,7 +151,10 @@ export default function Home() {
       digitalocean: 'DigitalOcean',
       liquid: 'Liquid',
       shopify: 'Shopify',
-      ecommerce: 'E-commerce'
+      ecommerce: 'E-commerce',
+      machinelearning: 'Machine Learning',
+      sklearn: 'SK-Learn',
+      pandas: 'Pandas'
     };
 
   return (
