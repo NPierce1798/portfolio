@@ -1,103 +1,196 @@
 import Image from "next/image";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+type VariantType = 'javascript' | 'python' | 'typescript' | 'nextjs' | 'react' | 'tailwind' | 'django' | 'restapi' | 'express' | 'supabase' | 'github' | 'vercel' | 'digitalocean' | 'liquid' | 'shopify' | 'ecommerce' | 'default';
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+interface TagProps {
+  children: React.ReactNode;
+  variant?: VariantType;
+}
+
+function Tag({ children, variant = 'default' }: TagProps) {
+    const variants = {
+      // Languages
+      javascript: 'bg-yellow-500/50 text-yellow-100 border-yellow-500/90',
+      python: 'bg-blue-400/50 text-blue-100 border-blue-400/90',
+      typescript: 'bg-blue-600/50 text-blue-200 border-blue-600/90',
+
+      // Frontend
+      nextjs: 'bg-black/50 text-white border-gray-200/90',
+      react: 'bg-red-500/50 text-red-100 border-red-500/90',
+      tailwind: 'bg-cyan-500/50 text-cyan-100 border-cyan-500/90',
+
+      // Backend
+      django: 'bg-green-600/50 text-green-100 border-green-600/90',
+      restapi: 'bg-gray-600/50 text-gray-100 border-gray-600/90',
+      express: 'bg-yellow-400/50 text-yellow-100 border-yellow-400/90',
+
+      // Services
+      supabase: 'bg-emerald-500/50 text-emerald-100 border-emerald-500/90',
+      github: 'bg-purple-600/50 text-purple-100 border-purple-600/90',
+
+      // Deployment tools
+      vercel: 'bg-black/50 text-white border-gray-600/90',
+      digitalocean: 'bg-blue-400/50 text-blue-100 border-blue-400/90',
+
+      // Other
+      liquid: 'bg-green-400/50 text-green-100 border-green-400/90',
+      shopify: 'bg-green-500/50 text-green-200 border-green-500/90',
+      ecommerce: 'bg-blue-500/50 text-blue-100 border-blue-500/90',
+
+      // Default
+      default: 'bg-gray-500/50 text-gray-100 border-gray-500/90'
+    };
+
+    return (
+    <span className={`
+        inline-block rounded-full border px-3 py-2 text-sm font-medium m-1
+        ${variants[variant] || variants.default}`}>
+            {children}
+        </span>
+    );
+}
+
+export default function Home() {
+      const projects = [
+        {
+            title: 'LaunchLens',
+            desc: 'Enter your business concept and get a list of real-world competitors with summaries, strengths, and gaps — all in seconds. Skip the guesswork and get clarity.',
+            image: '/images/Launchlens.jpg',
+            link: 'https://launchlens.vercel.app/',
+            tags: [
+              'typescript',
+              'nextjs',
+              'vercel',
+              'tailwind',
+              'supabase',
+              'github'
+            ]
+        },
+        {
+            title: 'MehaLabs',
+            desc: 'Build Smarter. Launch Faster. Custom software solutions for startups and innovators.',
+            image: '/images/meha.jpg',
+            link: 'https://www.mehalabs.ai/',
+            tags: [
+              'nextjs',
+              'tailwind',
+              'vercel',
+              'github'
+            ]
+        },
+        {
+            title: 'GovComp',
+            desc: 'A comparison tool giving government contractors an edge. Compare spending, report, and news data on companies.',
+            image: '/images/gov.jpg',
+            link: '',
+            tags: [
+              'react',
+              'express',
+              'supabase',
+              'github'
+            ]
+        },
+        {
+            title: 'IsMyCeoAFraud',
+            desc: 'Generated 10,000+ new newsletter subscribers. Enter a LinkedIn URL and get a fraud score.',
+            image: '/images/ceo.jpg',
+            link: 'https://ismyceoafraud.com/',
+            tags: [
+              'react',
+              'express',
+              'supabase',
+              'github'
+            ]
+        },
+        {
+            title: 'BravoBurrito',
+            desc: 'Custom Shopify liquid website for a restaurant',
+            image: '/images/bb.jpg',
+            link: 'https://thebravoburrito.com/',
+            tags: [
+              'shopify',
+              'liquid',
+              'ecommerce'
+            ]
+        },
+
+    ];
+
+    const tagDisplayNames: { [key: string]: string } = {
+      javascript: 'JavaScript',
+      python: 'Python',
+      typescript: 'TypeScript',
+      nextjs: 'Next.js',
+      react: 'React',
+      tailwind: 'Tailwind',
+      django: 'Django',
+      restapi: 'REST API',
+      express: 'Express',
+      supabase: 'Supabase',
+      github: 'GitHub',
+      vercel: 'Vercel',
+      digitalocean: 'DigitalOcean',
+      liquid: 'Liquid',
+      shopify: 'Shopify',
+      ecommerce: 'E-commerce'
+    };
+
+  return (
+    <div className="flex flex-col bg-gray-900 items-center p-6">
+      <div className="flex flex-col items-center w-2/3 border-b border-gray-700 p-10 hover:border-blue-400 transition">
+        <p className="text-3xl font-bold mb-4 text-white">Full Stack Developer</p>
+        <p className="w-2/3 text-gray-300">Former electrician turned Software Engineer, I have a passion for building solutions to solve complex problems. I&apos;ve developed a strong appreciation for the full lifecycle of building software — not just writing code, but also shaping ideas, designing experiences, and seeing a project through from start to finish.</p>
+      </div>
+
+      <div className="grid grid-cols-2 gap-6 w-2/3 mx-10 border-b border-gray-700 p-10 hover:border-blue-400 transition">
+        <div className="h-75 py-1 border border-gray-600 hover:border-blue-400 rounded-2xl  transition bg-gray-950 flex items-center h-fit justify-center text-gray-400">
+          <Image
+            src='/images/pierce.jpg'
+            width={300}
+            height={200}
+            className="rounded-xl"
+            alt="Launch Lens"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
+        <div className="h-75">
+          <p className="text-2xl font-bold text-white mb-4">Skills & Approach</p>
+          <p className="text-gray-300 leading-relaxed">I approach development with a builder&apos;s mindset, drawing from my background in electrical work where precision and systematic thinking were essential. My experience ranges from crafting responsive user interfaces with <strong className="text-blue-400">React</strong> and <strong className="text-blue-400">CSS</strong> to building robust backend systems with <strong className="text-blue-400">Python</strong> and <strong className="text-blue-400">Django</strong>. I&apos;m well-versed in database design, cloud deployment with <strong className="text-blue-400">DigitalOcean</strong>, and modern authentication patterns using <strong className="text-blue-400">Supabase</strong> — skills that let me transform ideas into fully functional applications.</p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      <p className="text-2xl font-bold text-white mb-2 mt-4">My Work</p>
+      <div className="grid grid-cols-2 gap-6 w-2/3 mx-10 border-b border-gray-700 p-10 hover:border-blue-400 transition">
+      {projects.length > 0 ? (
+                          projects.map((project, index) => (
+                              <div className="h-100 border border-gray-600 hover:border-blue-400 rounded-2xl p-1 transition bg-gray-800 flex flex-col items-center text-gray-400" key={index}>
+      
+                                  <Image
+                                      src={project.image}
+                                      width={600}
+                                      height={300}
+                                      className="mb-2 rounded-t-xl mt-0"
+                                      alt="Launch Lens"
+                                      />
+                                  <div className="w-full flex flex-row justify-between p-2 border-b-1 border-gray-500">
+                                      <p className="text-left text-xl text-blue-200 font-bold ml-2">{project.title}</p>
+                                      
+                                      <a href={project.link} className="h-10  mr-2 text-white hover:text-gray-200 hover:underline hover:bg-blue-700 cursor-pointer bg-blue-500 rounded-lg p-2 font-bold">Link</a>
+                                  </div>
+                                  
+                                  <div className="flex flex-wrap gap-1 p-2 w-full">
+                                    {project.tags.map((tag, tagIndex) => (
+                                      <Tag key={tagIndex} variant={tag as VariantType}>
+                                        {tagDisplayNames[tag] || tag}
+                                      </Tag>
+                                    ))}
+                                  </div>
+      
+                              </div>
+                          ))
+                      ) : (
+                          <div>None found</div>
+                      )}
+      </div>
     </div>
   );
 }
