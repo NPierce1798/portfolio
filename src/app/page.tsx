@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-type VariantType = 'javascript' | 'python' | 'typescript' | 'nextjs' | 'react' | 'tailwind' | 'django' | 'restapi' | 'express' | 'supabase' | 'github' | 'vercel' | 'digitalocean' | 'liquid' | 'shopify' | 'ecommerce' | 'machinelearning' | 'pandas' |'default';
+type VariantType = 'docker' | 'stripe' | 'javascript' | 'python' | 'typescript' | 'nextjs' | 'react' | 'tailwind' | 'django' | 'restapi' | 'express' | 'supabase' | 'github' | 'vercel' | 'digitalocean' | 'liquid' | 'shopify' | 'ecommerce' | 'machinelearning' | 'pandas' |'default';
 
 interface TagProps {
   children: React.ReactNode;
@@ -23,6 +23,7 @@ function Tag({ children, variant = 'default' }: TagProps) {
       django: 'bg-green-600/50 text-green-100 border-green-600/90',
       restapi: 'bg-gray-600/50 text-gray-100 border-gray-600/90',
       express: 'bg-yellow-400/50 text-yellow-100 border-yellow-400/90',
+      docker: 'bg-blue-500/50 text-purple-200 border-purple-400/90',
 
       // Services
       supabase: 'bg-emerald-500/50 text-emerald-100 border-emerald-500/90',
@@ -37,6 +38,7 @@ function Tag({ children, variant = 'default' }: TagProps) {
       liquid: 'bg-green-400/50 text-green-100 border-green-400/90',
       shopify: 'bg-green-500/50 text-green-200 border-green-500/90',
       ecommerce: 'bg-blue-500/50 text-blue-100 border-blue-500/90',
+      stripe: 'bg-green-500/50 text-green-100 border-green-500/90',
 
       // Other tools
       sklearn: 'bg-orange-500/50 text-orange-100 border-orange-500/90',
@@ -93,6 +95,7 @@ export default function Home() {
               'react',
               'express',
               'supabase',
+              'stripe',
               'github'
             ]
         },
@@ -132,6 +135,17 @@ export default function Home() {
               'github'
             ]
         },
+        {
+            title: 'Dockerize Your Django and Next.js Apps',
+            desc: 'Learn to dockerize Next.js, Django, and PostgreSQL',
+            image: '/images/docker.jpg',
+            link: 'https://medium.com/@npierce1798/dockerize-your-django-and-next-js-apps-with-postgresql-using-docker-compose-74738e7fdee9',
+            tags: [
+              'python',
+              'nextjs',
+              'docker'
+            ]
+        }
 
     ];
 
@@ -154,7 +168,9 @@ export default function Home() {
       ecommerce: 'E-commerce',
       machinelearning: 'Machine Learning',
       sklearn: 'SK-Learn',
-      pandas: 'Pandas'
+      pandas: 'Pandas',
+      stripe: 'Stripe',
+      docker: 'Docker'
     };
 
   return (
