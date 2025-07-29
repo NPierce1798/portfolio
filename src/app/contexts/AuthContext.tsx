@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { User } from '@supabase/supabase-js';
 import { supabaseClient } from '@/utils/supabase/client';
+import { useRouter } from 'next/navigation';
 
 // 1. Tell ts what the available data is
 interface AuthContextType {
@@ -18,6 +19,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = React.useState<User | null>(null);
     const [loading, setLoading] = React.useState(true);
     const supabase = supabaseClient();
+    const router = useRouter();
 
 // 4. useEffect to run on mount
     useEffect(() => {
@@ -36,12 +38,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             async (event, session) => {
                 setUser(session?.user ?? null);
                 setLoading(false);
+
+                if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'TOKEN_REFRESHED') {
+                    router.refresh();
+                }
             }
         );
 
         return () => subscription.unsubscribe();
 
-    }, [supabase.auth])
+    }, [supabase.auth, router])
 
     return (
         <AuthContext.Provider value={{ user, loading }}>

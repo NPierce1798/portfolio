@@ -1,3 +1,6 @@
+'use client';
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 type VariantType = 'docker' | 'stripe' | 'javascript' | 'python' | 'typescript' | 'nextjs' | 'react' | 'tailwind' | 'django' | 'restapi' | 'express' | 'supabase' | 'github' | 'vercel' | 'digitalocean' | 'liquid' | 'shopify' | 'ecommerce' | 'machinelearning' | 'pandas' |'default';
@@ -59,6 +62,13 @@ function Tag({ children, variant = 'default' }: TagProps) {
 }
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.refresh();
+  }, [router]);
+
+
       const projects = [
         {
             title: 'LaunchLens',
